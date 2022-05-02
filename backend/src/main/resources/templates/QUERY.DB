@@ -1,0 +1,79 @@
+CREATE TABLE IF NOT EXISTS roles(
+    id INT NOT NULL AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL,
+    descripcion VARCHAR(150) NOT NULL,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS usuarios(
+    id INT NOT NULL AUTO_INCREMENT,
+    username VARCHAR(120) NOT NULL,
+    nombre VARCHAR(120) NOT NULL,
+    apellido VARCHAR(120),
+    password VARCHAR(250) NOT NULL,
+    telefono VARCHAR(100) NOT NULL,
+    rol_id INT NOT NULL,
+    enabled TINYINT NULL DEFAULT 1,
+    PRIMARY KEY(id),
+    UNIQUE(username),
+    FOREIGN KEY(rol_id) REFERENCES roles(id)
+);
+
+CREATE TABLE IF NOT EXISTS productos(
+    id INT NOT NULL AUTO_INCREMENT, 
+    descripcion VARCHAR(250) NOT NULl,
+    cantidad INT NOT NULL,
+    fecha_ingreso DATE,
+    PRIMARY KEY(id)
+);
+
+
+CREATE TABLE IF NOT EXISTS pedidos(
+    id INT NOT NULL AUTO_INCREMENT,
+    producto_id INT NOT NULL,
+    cantidad INT NOT NULL,
+    fecha INT NOT NULL,
+    usuario_id INT NOT NULL,
+    PRIMARY KEY(id),
+    FOREIGN KEY(producto_id) REFERENCES productos(id),
+    FOREIGN KEy(usuario_id) REFERENCES usuarios(id)
+);
+
+
+-- Roles
+
+INSERT INTO roles(nombre, descripcion)
+VALUES  ('ADMIN', 'Administrador del Sistema'),('USER', 'Usuario Común');
+
+-- Usaurios
+INSERT INTO usuarios(username, nombre, password, telefono, rol_id)
+VALUES  ('admin2@gmail.com', 'Admin', '123456', '312 694 5452', 1)};
+
+USE dema
+
+-- Productos
+INSERT INTO productos(descripcion, cantidad, fecha_ingreso)
+    VALUES  ('Product 1', 100, now()),
+            ('Producto 2', 200, now());
+
+INSERT INTO pedidos(producto_id, cantidad, fecha, usuario_id)
+    VALUES  (1, 20, now(), 1),
+            (2, 5, now(), 2); 
+
+/* 
+…or create a new repository on the command line
+echo "# DEMAQ" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/Daniello2301/DEMAQ.git
+git push -u origin main
+
+
+
+…or push an existing repository from the command line
+git remote add origin https://github.com/Daniello2301/DEMAQ.git
+git branch -M main
+git push -u origin main
+ */
