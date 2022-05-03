@@ -1,4 +1,4 @@
-package com.demaq.backend.service.imp;
+/* package com.demaq.backend.service.imp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +51,7 @@ public class UserService implements UserDetailsService, IUserService{
                                             true,
                                             authorities);
 
-        return userDetails;
+        return null;
     }
 
 
@@ -63,4 +63,4 @@ public class UserService implements UserDetailsService, IUserService{
 
 
     
-}
+} */

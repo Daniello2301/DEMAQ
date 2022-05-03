@@ -16,7 +16,6 @@ import com.demaq.backend.service.iface.IUsuarioService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,9 +24,6 @@ public class UsuarioService implements IUsuarioService {
     
     @Autowired
     private IUsuarioRepository usuarioRepository;
-
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
     private IRolRepository rolRepository;
@@ -102,7 +98,7 @@ public class UsuarioService implements IUsuarioService {
         usuario.setUsername(usuarioDto.getUsername());
         usuario.setNombre(usuarioDto.getNombre());
         usuario.setApellido(usuarioDto.getApellido());
-        usuario.setPassword(passwordEncoder.encode(usuarioDto.getPassword()));
+        usuario.setPassword(usuarioDto.getPassword());
         usuario.setTelefono(usuarioDto.getTelefono());
         
         Optional<Rol> rol = rolRepository.findById(usuarioDto.getRol());
